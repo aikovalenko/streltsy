@@ -23,7 +23,7 @@ p
 
 .hidden
 {
-    display: none;
+    display: none !important;
 }
 
 .intro
@@ -144,6 +144,33 @@ p
             transform: scale(.6) translate(-50px, 300px) rotate(-50deg);
 }
 
+.gun-choose-angle
+{
+    -webkit-transform: scale(1) translate(-300px, 0) rotate(0deg);
+        -ms-transform: scale(1) translate(-300px, 0) rotate(0deg);
+            transform: scale(1) translate(-300px, 0) rotate(0deg);
+}
+
+.gun-high
+{
+    -webkit-transform: scale(1) translate(0, 0) rotate(-30deg);
+        -ms-transform: scale(1) translate(0, 0) rotate(-30deg);
+            transform: scale(1) translate(0, 0) rotate(-30deg);
+    -webkit-transform-origin: 50% 0;
+        -ms-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+}
+
+.gun-low
+{
+    -webkit-transform: scale(1) translate(0, 0) rotate(30deg);
+        -ms-transform: scale(1) translate(0, 0) rotate(30deg);
+            transform: scale(1) translate(0, 0) rotate(30deg);
+    -webkit-transform-origin: 20% 0;
+        -ms-transform-origin: 20% 0;
+            transform-origin: 20% 0;
+}
+
 .gun-settings
 {
     position: relative;
@@ -164,6 +191,37 @@ p
 {
     margin-top: 30px;
     margin-bottom: 30px;
+}
+.gun-settings__choose__angle
+{
+    position: absolute;
+    top: 50%;
+    right: 20%;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+            flex-direction: column;
+
+    height: 400px;
+    margin-top: -220px;
+
+    -webkit-transition: all 1s ease;
+         -o-transition: all 1s ease;
+            transition: all 1s ease; 
+    -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+            transform: translate(0, 0);
+
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 .gun-settings:before
 {

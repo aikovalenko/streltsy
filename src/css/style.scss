@@ -27,7 +27,7 @@ p {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .intro {
@@ -128,6 +128,19 @@ p {
   transform: scale(.6) translate(-50px, 300px) rotate(-50deg);
 }
 
+.gun-choose-angle {
+  transform: scale(1) translate(-300px, 0) rotate(0deg);
+}
+
+.gun-high {
+  transform: scale(1) translate(0, 0) rotate(-30deg);
+  transform-origin: 50% 0;
+}
+.gun-low {
+  transform: scale(1) translate(0, 0) rotate(30deg);
+  transform-origin: 20% 0;
+}
+
 .gun-settings {
   height: 30%;
   padding-top: 40px;
@@ -141,7 +154,23 @@ p {
   &__choose {
     margin-top: 30px;
     margin-bottom: 30px;
+
+    &__angle {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      top: 50%;
+      height: 400px;
+      margin-top: -220px;
+      right: 20%;
+
+      transform: translate(0, 0);
+      transition: all 1s ease;
+    }
   }
+
 
   &:before {
     position: absolute;
@@ -275,6 +304,8 @@ p {
   }
 
 }
+
+
 
 @keyframes gunpowderLoading {
   0% {
