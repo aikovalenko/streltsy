@@ -291,6 +291,21 @@ p
     -webkit-animation-iteration-count: 1;
             animation-iteration-count: 1;
 }
+.bullet--loading--toobig
+{
+    -webkit-animation-name: bullettoobig;
+            animation-name: bullettoobig;
+    -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+}
+.bullet--toobig
+{
+    -webkit-transform: translate(0, 40px);
+        -ms-transform: translate(0, 40px);
+            transform: translate(0, 40px); 
+
+    opacity: 1;
+}
 
 .gunpowder
 {
@@ -489,5 +504,55 @@ p
                 transform: translate(0, 100px);
 
         opacity: 0;
+    }
+}
+
+@-webkit-keyframes bullettoobig
+{
+    0%
+    {
+        -webkit-transform: translate(70px, -40px);
+                transform: translate(70px, -40px); 
+
+        opacity: 0;
+    }
+    70%
+    {
+        -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+
+        opacity: 1;
+    }
+    100%
+    {
+        -webkit-transform: translate(0, 40px);
+                transform: translate(0, 40px);
+
+        opacity: 1;
+    }
+}
+
+@keyframes bullettoobig
+{
+    0%
+    {
+        -webkit-transform: translate(70px, -40px);
+                transform: translate(70px, -40px); 
+
+        opacity: 0;
+    }
+    70%
+    {
+        -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+
+        opacity: 1;
+    }
+    100%
+    {
+        -webkit-transform: translate(0, 40px);
+                transform: translate(0, 40px);
+
+        opacity: 1;
     }
 }

@@ -47,7 +47,10 @@ function firstRender() {
                     "<p>Выберите наклон оружия</p>" +
                 "</div>" +
                 "<div class='fire hidden'>" +
-                    "<button>Пли!</button>" +
+                    "<button class='fire-btn'>Пли!</button>" +
+                "</div>" +
+                "<div class='tooBig hidden'>" +
+                    "<p>Пуля слишком широкая, начни сначала</p>" +
                 "</div>" +
             "</div>" +
         "</div>"
@@ -110,6 +113,7 @@ $(document).on('click', '.gunpowder', function () {
     }
     if ($(this).data('gunpowder') == 2) {
         $('.gun').append(BigGunpowder).find('.gunpowder').addClass('gunpowder--loading');
+        results.push(2);
     }
 
     $('.gun-img').css('transition', 'all '+ duration +'s ease').addClass('gun-load');
@@ -144,33 +148,58 @@ $(document).on('click', '.bullet', function () {
     var duration = 1,
         bulletDuration = 3;
 
+    function next() {
+        $('.gun-img').css('transition', 'all '+ duration +'s ease').addClass('gun-load');
+        $('.gun-settings').addClass('move-down');
+
+        setTimeout(function () {
+            $('.bullet--loading').addClass('bullet--loading--animate').css('animation-duration', ''+ bulletDuration +'s');
+        }, duration/0.7 + '000');
+
+        setTimeout(function () {
+            $('.gun-img').removeClass('gun-load').addClass('gun-choose-angle');
+            $('.gun-settings__choose__angle').removeClass('animate-right--active');
+
+            $('.gun-settings__bullet').addClass('hidden');
+            $('.gun-settings__angle').removeClass('hidden');
+
+            $('.gun-settings').removeClass('move-down');
+        }, bulletDuration + '000');
+    }
+
     if ($(this).data('bullet') == 0) {
         $('.gun').append(SmallBullet).find('.bullet').addClass('bullet--loading');
         results.push(0);
+        next();
     }
     if ($(this).data('bullet') == 1) {
         $('.gun').append(MediumBullet).find('.bullet').addClass('bullet--loading');
+        results.push(1);
+        next();
     }
     if ($(this).data('bullet') == 2) {
+
         $('.gun').append(BigBullet).find('.bullet').addClass('bullet--loading');
+        $('.gun-img').css('transition', 'all '+ duration +'s ease').addClass('gun-load');
+        $('.gun-settings').addClass('move-down');
+
+        setTimeout(function () {
+            $('.bullet--loading').addClass('bullet--loading--toobig').css('animation-duration', ''+ bulletDuration +'s');
+        }, duration/0.7 + '000');
+
+        setTimeout(function () {
+            // $('.gun-img').removeClass('gun-load').addClass('gun-choose-angle');
+            // $('.gun-settings__choose__angle').removeClass('animate-right--active');
+            $('.bullet--loading').addClass('bullet--toobig');
+            $('.gun-settings__bullet').addClass('hidden');
+            $('.gun-settings__angle').addClass('hidden');
+            $('.tooBig').removeClass('hidden');
+
+            $('.gun-settings').removeClass('move-down');
+        }, bulletDuration + '000');
     }
 
-    $('.gun-img').css('transition', 'all '+ duration +'s ease').addClass('gun-load');
-    $('.gun-settings').addClass('move-down');
 
-    setTimeout(function () {
-        $('.bullet--loading').addClass('bullet--loading--animate').css('animation-duration', ''+ bulletDuration +'s');
-    }, duration/0.7 + '000');
-
-    setTimeout(function () {
-        $('.gun-img').removeClass('gun-load').addClass('gun-choose-angle');
-        $('.gun-settings__choose__angle').removeClass('animate-right--active');
-
-        $('.gun-settings__bullet').addClass('hidden');
-        $('.gun-settings__angle').removeClass('hidden');
-
-        $('.gun-settings').removeClass('move-down');
-    }, bulletDuration + '000');
 
     console.log(results);
 });
@@ -179,7 +208,6 @@ $(document).on('click', '.angle', function () {
     var duration = 1,
         gunpowderDuration = 3;
 
-    console.log($(this).data('size'));
 
     if ($(this).data('angle') == 0) {
         $('.gun-img').removeClass('gun-choose-angle').addClass('gun-high');
@@ -198,8 +226,6 @@ $(document).on('click', '.angle', function () {
     $('.gun-settings').addClass('move-down');
 
     setTimeout(function () {
-        // $('.gun-img').removeClass('gun-load').addClass('gun-choose-angle');
-        // $('#test').removeClass('animate-right--active');
 
         $('.gun-settings__angle').addClass('hidden');
         $('.fire').removeClass('hidden');
@@ -210,17 +236,97 @@ $(document).on('click', '.angle', function () {
     console.log(results);
 });
 
-$(document).on('click', '.fire', function () {
+$(document).on('click', '.fire-btn', function () {
 
-    var is_same = (results.length == [0,0,0].length) && results.every(function(element, index) {
-            return element === [0,0,0][index];
-        });
-    console.log(is_same);
+    $(this).addClass('hidden');
 
-    // if (results = [0,0,0]) {
-    //     console.log('все по нулям')
-    // }
-    // else if (results = [0,0,1]) {
-    //     console.log('0 0 и 1')
-    // }
+    if (_.isEqual(results, [0, 0, 0])) {
+        console.log('все по нулям');
+
+        $('.fire').append(
+            "<p>Мало пороха, малая пуля, вверх. Результат - облочко дыма</p>"
+        );
+    }
+    else if (_.isEqual(results, [0, 1, 0])) {
+        $('.fire').append(
+            "<p>Мало пороха, средняя пуля, вверх. Результат - облочко дыма</p>"
+        );
+    }
+    else if (_.isEqual(results, [1, 0, 0])) {
+        $('.fire').append(
+            "<p>Средне пороха, малая пуля, вверх. Результат - выше отметки (анимация в космос)</p>"
+        );
+    }
+    else if (_.isEqual(results, [2, 0, 0])) {
+        $('.fire').append(
+            "<p>Много пороха, малая пуля, вверх. Результат - разрыв</p>"
+        );
+    }
+    else if (_.isEqual(results, [2, 1, 0])) {
+        $('.fire').append(
+            "<p>Много пороха, средняя пуля, вверх. Результат - разрыв</p>"
+        );
+    }
+    else if (_.isEqual(results, [1, 1, 0])) {
+        $('.fire').append(
+            "<p>Средне пороха, средняя пуля, вверх. Результат - ствол дергается выше, перелет (анимация в космос)</p>"
+        );
+    }
+
+
+    else if (_.isEqual(results, [2, 1, 1])) {
+        $('.fire').append(
+            "<p>Много пороха, средняя пуля, прямо. Результат - разрыв</p>"
+        );
+    }
+    else if (_.isEqual(results, [1, 1, 1])) {
+        $('.fire').append(
+            "<p>Средне пороха, средняя пуля, прямо. Результат - перелет, но уже близко</p>"
+        );
+    }
+    else if (_.isEqual(results, [0, 1, 1])) {
+        $('.fire').append(
+            "<p>Мало пороха, средняя пуля, прямо. Результат - недолет</p>"
+        );
+    }
+    else if (_.isEqual(results, [2, 0, 1])) {
+        $('.fire').append(
+            "<p>Много пороха, малая пуля, прямо. Результат - разрыв</p>"
+        );
+    }
+    else if (_.isEqual(results, [1, 0, 1])) {
+        $('.fire').append(
+            "<p>Средне пороха, малая пуля, прямо. Результат - перелет, но уже близко</p>"
+        );
+    }
+    else if (_.isEqual(results, [0, 0, 1])) {
+        $('.fire').append(
+            "<p>Мало пороха, малая пуля, прямо. Результат - недолет</p>"
+        );
+    }
+
+
+    else if (_.isEqual(results, [2, 1, 2])) {
+        $('.fire').append(
+            "<p>Много пороха, средняя пуля, вниз. Результат - разрыв</p>"
+        );
+    }
+    else if (_.isEqual(results, [1, 1, 2])) {
+        $('.fire').append(
+            "<p>Средне пороха, средняя пуля, вниз. Результат - попадание!</p>"
+        );
+    }
+    else if (_.isEqual(results, [0, 1, 2])) {
+        $('.fire').append(
+            "<p>Мало пороха, средняя пуля, вниз. Результат - стол дергается вверх, но пуля не долетает</p>"
+        );
+    }
+    else if (_.isEqual(results, [0, 0, 2]) == true || _.isEqual(results, [1, 0, 2]) == true || _.isEqual(results, [2, 0, 2]) == true) {
+        $('.fire').append(
+            "<p>Малая пуля, мало пороха, вниз. Результат - пуля вываливается</p>"
+        );
+    }
+
+
+
 });

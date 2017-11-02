@@ -220,9 +220,17 @@ p {
       animation-name: bulletLoading;
       animation-iteration-count: 1;
     }
+    &--toobig {
+      animation-name: bullettoobig;
+      animation-iteration-count: 1;
+    }
 
   }
 
+  &--toobig {
+    opacity: 1;
+    transform: translate(0, 40px);
+  }
 }
 
 .gunpowder {
@@ -335,5 +343,19 @@ p {
   100% {
     transform: translate(0, 100px);
     opacity: 0;
+  }
+}
+@keyframes bullettoobig {
+  0% {
+    opacity: 0;
+    transform: translate(70px, -40px);
+  }
+  70% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 40px);
+    opacity: 1;
   }
 }
