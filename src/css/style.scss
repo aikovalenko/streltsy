@@ -58,6 +58,10 @@ p {
 
 }
 
+.start {
+  margin-top: 40px;
+}
+
 .absolute-img {
   position: relative;
 
@@ -181,8 +185,6 @@ p {
     position: absolute;
     top: 33%;
     left: 54.3%;
-    width: 30px;
-    height: 30px;
     opacity: 0;
 
     &--animate {
@@ -260,7 +262,7 @@ p {
     opacity: 0;
 
     .anim {
-      transform: translate(0, 100px);
+      transform: translate(0, 60px);
       transition: all 1s ease
     }
 

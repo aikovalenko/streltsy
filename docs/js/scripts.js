@@ -21,33 +21,21 @@ function firstRender() {
     app.append(
         "<div class='select-gun animate animate-up animate-up--active'>" +
             "<div class='gun absolute-img'>" +
-                "<div class='bullet bullet--loading'></div>" +
-                "<div class='gunpowder gunpowder--loading gunpowder--medium'>" +
-                    "<div></div><div></div><div></div><div></div><div></div><div></div>" +
-                "</div>" +
+                // "<div class='bullet bullet--loading'></div>" +
+
                 "<img class='gun-img' src='images/gun.jpg'>" +
             "</div>" +
             "<div class='gun-settings'>" +
                 "<div class='gun-settings__bullet hidden'>" +
                     "<p>Выберите пулю</p>" +
                     "<div class='gun-settings__choose'>" +
-                        "<div class='bullet bullet--small'></div>" +
-                        "<div class='bullet bullet--medium'></div>" +
-                        "<div class='bullet bullet--big'></div>" +
+                        SmallBullet + MediumBullet + BigBullet +
                     "</div>" +
                 "</div>" +
                 "<div class='gun-settings__gunpowder'>" +
                     "<p>Засыпте порох</p>" +
-                    "<div class='gun-settings__choose'>" +
-                        "<div class='gunpowder gunpowder--small'>" +
-                            "<div></div><div></div><div></div>" +
-                        "</div>" +
-                        "<div class='gunpowder gunpowder--medium'>" +
-                            "<div></div><div></div><div></div><div></div><div></div><div></div>" +
-                        "</div>" +
-                        "<div class='gunpowder gunpowder--big'>" +
-                            "<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>" +
-                        "</div>" +
+                    "<div class='gun-settings__choose gun-settings__gunpowder__choose'>" +
+                        SmallGunpowder + MediumGunpowder + BigGunpowder +
                     "</div>" +
                 "</div>" +
                 "<div class='fire hidden'>" +
@@ -57,6 +45,22 @@ function firstRender() {
         "</div>"
     );
 }
+
+var SmallGunpowder = "<div class='gunpowder gunpowder--small' data-size='0'>" +
+                        "<div></div><div></div><div></div>" +
+                     "</div>",
+    MediumGunpowder = "<div class='gunpowder gunpowder--medium' data-size='1'>" +
+                         "<div></div><div></div><div></div><div></div><div></div><div></div>" +
+                        "</div>",
+    BigGunpowder = "<div class='gunpowder gunpowder--big' data-size='2'>" +
+                         "<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>" +
+                        "</div>",
+
+
+    SmallBullet = "<div class='bullet bullet--small' data-size='0'></div>",
+    MediumBullet = "<div class='bullet bullet--medium' data-size='1'></div>",
+    BigBullet = "<div class='bullet bullet--big' data-size='2'></div>";
+
 
 
 // var duration = 2;
@@ -86,14 +90,23 @@ $(document).on('click', '.gunpowder', function () {
     var duration = 1,
         gunpowderDuration = 3;
 
+    console.log($(this).data('size'));
+
+    if ($(this).data('size') == 0) {
+        $('.gun').append(SmallGunpowder).find('.gunpowder').addClass('gunpowder--loading');
+    }
+    if ($(this).data('size') == 1) {
+        $('.gun').append(MediumGunpowder).find('.gunpowder').addClass('gunpowder--loading');
+    }
+    if ($(this).data('size') == 2) {
+        $('.gun').append(BigGunpowder).find('.gunpowder').addClass('gunpowder--loading');
+    }
+
     $('.gun-img').css('transition', 'all '+ duration +'s ease').addClass('gun-load');
     $('.gun-settings').addClass('move-down');
 
     setTimeout(function () {
         $('.gunpowder--loading').addClass('gunpowder--loading--animate').css('animation-duration', ''+ gunpowderDuration +'s');
-        // $('.gunpowder--loading').find('div').each(function () {
-        //
-        // });
 
     }, duration/0.7 + '000');
 
@@ -119,6 +132,17 @@ $(document).on('click', '.gunpowder', function () {
 $(document).on('click', '.bullet', function () {
     var duration = 1,
         bulletDuration = 3;
+
+    if ($(this).data('size') == 0) {
+        $('.gun').append(SmallBullet).find('.bullet').addClass('bullet--loading');
+    }
+    if ($(this).data('size') == 1) {
+        $('.gun').append(MediumBullet).find('.bullet').addClass('bullet--loading');
+    }
+    if ($(this).data('size') == 2) {
+        $('.gun').append(BigBullet).find('.bullet').addClass('bullet--loading');
+    }
+
     $('.gun-img').css('transition', 'all '+ duration +'s ease').addClass('gun-load');
     $('.gun-settings').addClass('move-down');
 
