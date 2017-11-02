@@ -38,7 +38,7 @@ function firstRender() {
                     "</div>" +
                 "</div>" +
                 "<div class='gun-settings__gunpowder'>" +
-                    "<p>Засыпте порох</p>" +
+                    "<p>Засыпьте порох</p>" +
                     "<div class='gun-settings__choose gun-settings__gunpowder__choose'>" +
                         SmallGunpowder + MediumGunpowder + BigGunpowder +
                     "</div>" +
