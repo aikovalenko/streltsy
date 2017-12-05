@@ -130,49 +130,65 @@ $('html').append(
 
 function introRender() {
     app.append(
-        "<div class='intro'>" +
-            "<div class='intro__img absolute-img animate animate-left'><img src='images/intro.jpg' alt=''></div>" +
+        "<div class='intro '>" +
 
-            "<div class='intro__text animate animate-right'>" +
-                "<p>Вступительное описание к игре</p>" +
-                "<div class='start'><button class='start-button'>Начать игру</button></div>" +
+            "<div class='game-name'>" +
+                "<div class='animate-s animate-top animate-js header'>изучи<br>«ОГНЕВОЙ БОЙ»</div>" +
+                "<div class='animate-s animate-top animate-js header--under'>XVII века</div>" +
             "</div>" +
+            // "<div class='intro__text animate animate-right'>" +
+            //     "<p>Вступительное описание к игре</p>" +
+            //     "<div class='start'><button class='start-button'>Начать игру</button></div>" +
+            // "</div>" +
+            "<button class='start-button decoration animate-s animate-down animate-js js-quiz'>Начать</button>" +
         "</div>"
     );
+
+
+
 }
 
 function firstRender() {
     app.append(
-        "<div class='select-gun animate animate-up animate-up--active'>" +
+        "<div class='select-gun'>" +
             "<div class='gun absolute-img'>" +
-                "<img class='gun-img' src='images/gun.jpg'>" +
-                "<div id='test' class='gun-settings__angle gun-settings__choose__angle animate animate-right animate-right--active'>" +
-                    "<button class='angle' data-angle='0'>Выше</button>" +
-                    "<button class='angle' data-angle='1'>Прямо</button>" +
-                    "<button class='angle' data-angle='2'>Ниже</button>" +
-                "</div>" +
+                "<img class='gun-img' src='images/gun.png'>" +
+                // "<div id='test' class='gun-settings__angle gun-settings__choose__angle animate animate-right animate-right--active'>" +
+                //     "<button class='angle' data-angle='0'>Выше</button>" +
+                //     "<button class='angle' data-angle='1'>Прямо</button>" +
+                //     "<button class='angle' data-angle='2'>Ниже</button>" +
+                // "</div>" +
             "</div>" +
             "<div class='gun-settings'>" +
-                "<div class='gun-settings__bullet hidden'>" +
-                    "<p>Выберите пулю</p>" +
-                    "<div class='gun-settings__choose'>" +
+                "<div class='gun-set gun-settings__bullet hidden'>" +
+                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Выберите пулю</div>" +
+                    "<div class='decoration animate-down js-animate gun-settings__choose gun-set__block gun-set__block--bottom'>" +
                         SmallBullet + MediumBullet + BigBullet +
                     "</div>" +
                 "</div>" +
-                "<div class='gun-settings__gunpowder'>" +
-                    "<p>Засыпьте порох</p>" +
-                    "<div class='gun-settings__choose gun-settings__gunpowder__choose'>" +
+                "<div class='gun-set gun-settings__gunpowder'>" +
+                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Засыпьте порох</div>" +
+                    "<div class='decoration animate-down gun-set__block gun-settings__choose gun-settings__gunpowder__choose js-animate gun-set__block--bottom'>" +
                         SmallGunpowder + MediumGunpowder + BigGunpowder +
                     "</div>" +
                 "</div>" +
-                "<div class='gun-settings__angle hidden'>" +
-                    "<p>Выберите наклон оружия</p>" +
+                "<div class='gun-set gun-settings__angle hidden'>" +
+                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Выберите наклон оружия</div>" +
+                    "<div id='test' class='decoration animate-down gun-set__block gun-settings__angle gun-settings__choose__angle js-animate gun-set__block--bottom'>" +
+                        "<button class='angle' data-angle='0'>Выше</button>" +
+                        "<button class='angle' data-angle='1'>Прямо</button>" +
+                        "<button class='angle' data-angle='2'>Ниже</button>" +
+                    "</div>" +
                 "</div>" +
-                "<div class='fire hidden'>" +
-                    "<button class='fire-btn'>Пли!</button>" +
+                // "<div class='fire hidden'>" +
+                //     "<button class='fire-btn'>Пли!</button>" +
+                // "</div>" +
+                "<div class='fire hidden gun-set'>" +
+                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Приготовились</div>" +
+                    "<div class='decoration fire-btn animate-down js-animate gun-settings__choose gun-set__block gun-set__block--bottom'>Пали!</div>" +
                 "</div>" +
-                "<div class='tooBig hidden'>" +
-                    "<p>Пуля слишком широкая, начни сначала</p>" +
+                "<div class='tooBig hidden gun-set'>" +
+                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Пуля слишком большого калибра</div>" +
                 "</div>" +
             "</div>" +
         "</div>"
@@ -197,25 +213,30 @@ var SmallGunpowder = "<div class='gunpowder gunpowder--small' data-gunpowder='0'
 
 
 // var duration = 2;
-introRender();
-firstRender();
+// introRender();
+// firstRender();
 // $('.select-gun.animate').css('transition', 'all '+ duration/1.4 +'s ease').removeClass('animate-up--active');
+
+
 $(document).on('click', '.start-button', function () {
     var duration = 2;
-    $('.intro .animate').css('transition', 'all '+ duration +'s ease');
-    $('.intro .animate-left').addClass('animate-left--active');
-    $('.intro .animate-right').addClass('animate-right--active');
+    $('.intro .animate-js').removeClass('animate-s');
+    // $('.intro .animate').css('transition', 'all '+ duration +'s ease');
 
-
-    $('.select-gun.animate').css('transition', 'all '+ duration/1.4 +'s ease').removeClass('animate-up--active');
-
+    //
+    //
+    //
+    //
     setTimeout(function () {
-
+        $('.intro').addClass('hide');
+        $('.gun-set .js-animate').addClass('animate-s');
+        // $('.select-gun.animate').css('transition', 'all '+ duration/1.4 +'s ease').removeClass('animate-up--active');
+        $('.select-gun').css('opacity', '1');
     }, 500);
-
-    setTimeout(function () {
-        $('.intro').css('display', 'none');
-    }, duration + '000');
+    //
+    // setTimeout(function () {
+    //     $('.intro').css('display', 'none');
+    // }, duration + '000');
 
 
 
@@ -280,7 +301,8 @@ $(document).on('click', '.gunpowder', function () {
     }
 
     $('.gun-img').css('transition', 'all '+ duration +'s ease').addClass('gun-load');
-    $('.gun-settings').addClass('move-down');
+    // $('.gun-settings').addClass('move-down');
+    $('.gun-set .js-animate').removeClass('animate-s');
 
     setTimeout(function () {
         $('.gunpowder--loading').addClass('gunpowder--loading--animate').css('animation-duration', ''+ gunpowderDuration +'s');
@@ -301,8 +323,12 @@ $(document).on('click', '.gunpowder', function () {
         $('.gun-settings__bullet').removeClass('hidden');
         $('.gun-settings__gunpowder').addClass('hidden');
 
-        $('.gun-settings').removeClass('move-down');
+        // $('.gun-settings').removeClass('move-down');
+        // $('.gun-set .js-animate').addClass('animate-s');
     }, gunpowderDuration + '000');
+    setTimeout(function () {
+        $('.gun-set .js-animate').addClass('animate-s');
+    }, 4000);
 
     console.log(results);
 });
@@ -313,38 +339,44 @@ $(document).on('click', '.bullet', function () {
 
     function next() {
         $('.gun-img').css('transition', 'all '+ duration +'s ease').addClass('gun-load');
-        $('.gun-settings').addClass('move-down');
+        // $('.gun-settings').addClass('move-down');
+        $('.gun-set .js-animate').removeClass('animate-s');
 
         setTimeout(function () {
             $('.bullet--loading').addClass('bullet--loading--animate').css('animation-duration', ''+ bulletDuration +'s');
         }, duration/0.7 + '000');
 
         setTimeout(function () {
-            $('.gun-img').removeClass('gun-load').addClass('gun-choose-angle');
+            $('.gun-img').removeClass('gun-load');
             $('.gun-settings__choose__angle').removeClass('animate-right--active');
 
             $('.gun-settings__bullet').addClass('hidden');
             $('.gun-settings__angle').removeClass('hidden');
 
-            $('.gun-settings').removeClass('move-down');
+            // $('.gun-settings').removeClass('move-down');
         }, bulletDuration + '000');
+
+        setTimeout(function () {
+            $('.gun-set .js-animate').addClass('animate-s');
+        }, 4000);
     }
 
-    if ($(this).data('bullet') == 0) {
+    if ($(this).data('bullet') === 0) {
         $('.gun').append(SmallBullet).find('.bullet').addClass('bullet--loading');
         results.push(0);
         next();
     }
-    if ($(this).data('bullet') == 1) {
+    if ($(this).data('bullet') === 1) {
         $('.gun').append(MediumBullet).find('.bullet').addClass('bullet--loading');
         results.push(1);
         next();
     }
-    if ($(this).data('bullet') == 2) {
+    if ($(this).data('bullet') === 2) {
 
         $('.gun').append(BigBullet).find('.bullet').addClass('bullet--loading');
         $('.gun-img').css('transition', 'all '+ duration +'s ease').addClass('gun-load');
-        $('.gun-settings').addClass('move-down');
+        // $('.gun-settings').addClass('move-down');
+        $('.gun-set .js-animate').removeClass('animate-s');
 
         setTimeout(function () {
             $('.bullet--loading').addClass('bullet--loading--toobig').css('animation-duration', ''+ bulletDuration +'s');
@@ -358,8 +390,25 @@ $(document).on('click', '.bullet', function () {
             $('.gun-settings__angle').addClass('hidden');
             $('.tooBig').removeClass('hidden');
 
-            $('.gun-settings').removeClass('move-down');
+            // $('.gun-settings').removeClass('move-down');
         }, bulletDuration + '000');
+        setTimeout(function () {
+            $('.gun-set .js-animate').addClass('animate-s');
+        }, 4000);
+        setTimeout(function () {
+            $('.gun-set .js-animate').removeClass('animate-s');
+        }, 8000);
+        setTimeout(function () {
+            $('.gun-set .js-animate').removeClass('animate-s');
+            $('.bullet--loading').removeClass('bullet--toobig');
+            $('.gun-settings__bullet').removeClass('hidden');
+            $('.tooBig').addClass('hidden');
+            $('.gun-img').removeClass('gun-load');
+            $('.bullet--big').remove();
+        }, 8500);
+        setTimeout(function () {
+            $('.gun-set .js-animate').addClass('animate-s');
+        }, 9000);
     }
 
 
@@ -374,27 +423,51 @@ $(document).on('click', '.angle', function () {
 
     if ($(this).data('angle') == 0) {
         $('.gun-img').removeClass('gun-choose-angle').addClass('gun-high');
+        $('body').append(
+            "<div class='angle-illustration angle-illustration--up'>" +
+            "</div>"
+        );
         results.push(0);
     }
     if ($(this).data('angle') == 1) {
         // $('.gun-img').removeClass('gun-choose-angle').addClass('gun-high');
+        $('body').append(
+            "<div class='angle-illustration angle-illustration--ok'>" +
+            "</div>"
+        );
         results.push(1);
     }
     if ($(this).data('angle') == 2) {
         $('.gun-img').removeClass('gun-choose-angle').addClass('gun-low');
+        $('body').append(
+            "<div class='angle-illustration angle-illustration--down'>" +
+            "</div>"
+        );
         results.push(2);
     }
 
     $('.gun-settings__choose__angle').addClass('animate-right--active');
-    $('.gun-settings').addClass('move-down');
-
+    // $('.gun-settings').removeClass('move-down');
+    $('.gun-set .js-animate').removeClass('animate-s');
+    $('.gun').addClass('gun-zoom');
+    setTimeout(function () {
+        $('.angle-illustration').css('opacity', '1');
+    }, 300);
     setTimeout(function () {
 
         $('.gun-settings__angle').addClass('hidden');
         $('.fire').removeClass('hidden');
 
-        $('.gun-settings').removeClass('move-down');
+
+        // $('.gun-settings').removeClass('move-down');
+        // $('.gun-set .js-animate').addClass('animate-s');
     }, 1200);
+    setTimeout(function () {
+
+        $('.gun-set .js-animate').addClass('animate-s');
+
+    }, 1300);
+
 
     console.log(results);
 });
@@ -423,29 +496,48 @@ $(document).on('click', '.angle', function () {
 // );
 
 
-
-$(document).on('click', '.fire-btn', function () {
+results = [2, 1, 2];
+// $(document).on('click', '.fire-btn', function () {
+$(document).on('click', function () {
 // $(document).on('click', function () {
 
     $(this).addClass('hidden');
 
+    // app.append(
+    //     "<div class='dramatization'>" +
+    //         "<div class='person person-animate'>" +
+    //             "<div class='person__body'>" +
+    //                 "<div class='person__head'></div>" +
+    //                 "<div class='person__gun'>" +
+    //                     "<img src='images/gun-small.jpg' alt=''>" +
+    //                     "<div class='person__gun__bullet'></div>" +
+    //                 "</div>" +
+    //             "</div>" +
+    //             "<div class='person__legs'></div>" +
+    //         "</div>" +
+    //         "<div class='aim aim-animate'><div class='circle'></div></div>" +
+    //         "<div class='effects'>" +
+    //             "<div class='effect effect--explosion'>взрыв</div>" +
+    //             "<div class='effect effect--smoke'>облачко дыма</div>" +
+    //             "<div class='effect effect--joke'>вот незадача</div>" +
+    //         "</div>" +
+    //         "<div class='d-bullet'></div>" +
+    //     "</div>"
+    // );
+
+
     app.append(
         "<div class='dramatization'>" +
-            "<div class='person person-animate'>" +
-                "<div class='person__body'>" +
-                    "<div class='person__head'></div>" +
-                    "<div class='person__gun'>" +
-                        "<img src='images/gun-small.jpg' alt=''>" +
-                        "<div class='person__gun__bullet'></div>" +
-                    "</div>" +
-                "</div>" +
-                "<div class='person__legs'></div>" +
+            "<div class='shot shot-animate'>" +
+                "<img width='100%' src='images/shot.png' alt=''>" +
             "</div>" +
-            "<div class='aim aim-animate'><div class='circle'></div></div>" +
-            "<div class='effects'>" +
-                "<div class='effect effect--explosion'>взрыв</div>" +
-                "<div class='effect effect--smoke'>облачко дыма</div>" +
-                "<div class='effect effect--joke'>вот незадача</div>" +
+            "<div class='person person-animate'>" +
+                "<img class='js-person js-person-up' width='300' src='images/aim-up-small.png' alt=''>" +
+                "<img class='js-person js-person-down' width='300' src='images/aim-down-small.png' alt=''>" +
+                "<img class='js-person js-person-norm' width='300' src='images/aim-norm-small.png' alt=''>" +
+            "</div>" +
+            "<div class='aim aim-animate'>" +
+                "<img width='180' src='images/aim-small.png' alt=''>" +
             "</div>" +
             "<div class='d-bullet'></div>" +
         "</div>"
@@ -458,10 +550,23 @@ $(document).on('click', '.fire-btn', function () {
     setTimeout(function () {
         $('.person').removeClass('person-animate');
         $('.aim').removeClass('aim-animate');
+        // $('.shot').removeClass('shot-animate');
     }, 200);
+    setTimeout(function () {
+        // $('.person').removeClass('person-animate');
+        // $('.aim').removeClass('aim-animate');
+        $('.shot').removeClass('shot-animate');
+        $('.js-person').css('opacity', '0');
+        $('.js-person-up').css('opacity', '1');
+    }, 2000);
+
+
+
 
 
     if (_.isEqual(results, [0, 0, 0])) {
+        $('.js-person-up').css('opacity', '1');
+
         gunUp();
         smoke();
         $('.fire').append(
@@ -469,6 +574,8 @@ $(document).on('click', '.fire-btn', function () {
         );
     }
     else if (_.isEqual(results, [0, 1, 0])) {
+        $('.js-person-up').css('opacity', '1');
+
         gunUp();
         smoke();
         $('.fire').append(
@@ -476,12 +583,16 @@ $(document).on('click', '.fire-btn', function () {
         );
     }
     else if (_.isEqual(results, [1, 0, 0])) {
+        $('.js-person-up').css('opacity', '1');
+
         gunUp();
         $('.fire').append(
             "<p>Средне пороха, малая пуля, вверх. Результат - выше отметки (анимация в космос)</p>"
         );
     }
     else if (_.isEqual(results, [2, 0, 0])) {
+        $('.js-person-up').css('opacity', '1');
+
         gunUp();
         explosion();
         $('.fire').append(
@@ -489,6 +600,8 @@ $(document).on('click', '.fire-btn', function () {
         );
     }
     else if (_.isEqual(results, [2, 1, 0])) {
+        $('.js-person-up').css('opacity', '1');
+
         gunUp();
         explosion();
         $('.fire').append(
@@ -496,6 +609,9 @@ $(document).on('click', '.fire-btn', function () {
         );
     }
     else if (_.isEqual(results, [1, 1, 0])) {
+
+        $('.js-person-up').css('opacity', '1');
+
         gunUp();
         $('.fire').append(
             "<p>Средне пороха, средняя пуля, вверх. Результат - ствол дергается выше, перелет (анимация в космос)</p>"
@@ -504,33 +620,51 @@ $(document).on('click', '.fire-btn', function () {
 
 
     else if (_.isEqual(results, [2, 1, 1])) {
+
+        $('.js-person-norm').css('opacity', '1');
+
         explosion();
         $('.fire').append(
             "<p>Много пороха, средняя пуля, прямо. Результат - разрыв</p>"
         );
     }
     else if (_.isEqual(results, [1, 1, 1])) {
+
+        $('.js-person-norm').css('opacity', '1');
+
         $('.fire').append(
             "<p>Средне пороха, средняя пуля, прямо. Результат - перелет, но уже близко</p>"
         );
     }
     else if (_.isEqual(results, [0, 1, 1])) {
+
+        $('.js-person-norm').css('opacity', '1');
+
         $('.fire').append(
             "<p>Мало пороха, средняя пуля, прямо. Результат - недолет</p>"
         );
     }
     else if (_.isEqual(results, [2, 0, 1])) {
+
+        $('.js-person-norm').css('opacity', '1');
+
         explosion();
         $('.fire').append(
             "<p>Много пороха, малая пуля, прямо. Результат - разрыв</p>"
         );
     }
     else if (_.isEqual(results, [1, 0, 1])) {
+
+        $('.js-person-norm').css('opacity', '1');
+
         $('.fire').append(
             "<p>Средне пороха, малая пуля, прямо. Результат - перелет, но уже близко</p>"
         );
     }
     else if (_.isEqual(results, [0, 0, 1])) {
+
+        $('.js-person-norm').css('opacity', '1');
+
         $('.fire').append(
             "<p>Мало пороха, малая пуля, прямо. Результат - недолет</p>"
         );
@@ -538,6 +672,8 @@ $(document).on('click', '.fire-btn', function () {
 
 
     else if (_.isEqual(results, [2, 1, 2])) {
+        $('.js-person-down').css('opacity', '1');
+
         gunDown();
         explosion();
         $('.fire').append(
@@ -545,6 +681,7 @@ $(document).on('click', '.fire-btn', function () {
         );
     }
     else if (_.isEqual(results, [1, 1, 2])) {
+        $('.js-person-down').css('opacity', '1');
         gunDown();
         win();
         $('.fire').append(
@@ -552,13 +689,15 @@ $(document).on('click', '.fire-btn', function () {
         );
     }
     else if (_.isEqual(results, [0, 1, 2])) {
+        $('.js-person-down').css('opacity', '1');
         gunDown();
         bulletGoesDown();
         $('.fire').append(
             "<p>Мало пороха, средняя пуля, вниз. Результат - стол дергается вверх, но пуля не долетает</p>"
         );
     }
-    else if (_.isEqual(results, [0, 0, 2]) == true || _.isEqual(results, [1, 0, 2]) == true || _.isEqual(results, [2, 0, 2]) == true) {
+    else if (_.isEqual(results, [0, 0, 2]) === true || _.isEqual(results, [1, 0, 2]) === true || _.isEqual(results, [2, 0, 2]) === true) {
+        $('.js-person-down').css('opacity', '1');
         gunDown();
         bulletDown();
         joke();
@@ -567,7 +706,28 @@ $(document).on('click', '.fire-btn', function () {
         );
     }
 
-
+// //The data for our line
+//     var lineData = [ { "x": 1,   "y": 5},  { "x": 20,  "y": 20},
+//         { "x": 40,  "y": 10}, { "x": 60,  "y": 40},
+//         { "x": 80,  "y": 5},  { "x": 100, "y": 60}];
+//
+//     //This is the accessor function we talked about above
+//     var lineFunction = d3.svg.line()
+//         .x(function(d) { return d.x; })
+//         .y(function(d) { return d.y; })
+//         .interpolate("linear");
+//
+//     //The SVG Container
+//     var svgContainer = d3.select("body").append("svg")
+//         .attr("width", 200)
+//         .attr("height", 200);
+//
+//     //The line SVG Path we draw
+//     var lineGraph = svgContainer.append("path")
+//         .attr("d", lineFunction(lineData))
+//         .attr("stroke", "blue")
+//         .attr("stroke-width", 2)
+//         .attr("fill", "none");
 
 });
 
