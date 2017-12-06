@@ -345,6 +345,7 @@ p {
 
     &--top {
       margin-top: 200px;
+      color: #694025;
     }
     &--bottom {
       margin-bottom: 140px;
@@ -358,6 +359,16 @@ p {
   transform: translateY(100%);
 }
 
+.step-powder {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 50px;
+  color: #c59c67;
+}
+
 .bullet {
   display: inline-block;
   margin-left: 20px;
@@ -366,22 +377,22 @@ p {
   background-color: #000;
 
   &--small {
+    width: 25px;
+    height: 25px;
+  }
+  &--medium {
     width: 40px;
     height: 40px;
   }
-  &--medium {
-    width: 50px;
-    height: 50px;
-  }
   &--big {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
   }
 
   &--loading {
     position: absolute;
-    top: 33%;
-    left: 54.3%;
+    top: 7%;
+    left: 55.3%;
     opacity: 0;
 
     &--animate {
@@ -401,67 +412,93 @@ p {
   }
 }
 
+.bullet-wrap {
+
+}
+.bullet-text {
+  font-size: 34px;
+  font-weight: 400;
+}
+
 .gunpowder {
   display: inline-block;
   position: relative;
   margin-right: 10px;
   margin-left: 10px;
-  height: 25px;
-  margin-top: 24px;
-  width: 30px;
+  height: 220px;
+  margin-top: 60px;
+  width: 250px;
 
   & > div {
     position: absolute;
     border-radius: 50%;
     background-color: #000;
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
+    margin-left: 115px;
 
     &:nth-child(1) {
       top: 0;
     }
     &:nth-child(2) {
-      top: 10px;
-      left: -5px;
+      top: 20px;
+      left: -10px;
     }
     &:nth-child(3) {
-      top: 10px;
-      left: 5px;
+      top: 20px;
+      left: 10px;
     }
     &:nth-child(4) {
       top: 0;
-      left: 10px;
+      left: 20px;
     }
     &:nth-child(5) {
-      top: -10px;
-      left: 5px;
-    }
-    &:nth-child(6) {
-      top: 10px;
-      left: 15px;
-    }
-    &:nth-child(7) {
       top: -20px;
       left: 10px;
     }
+    &:nth-child(6) {
+      top: 20px;
+      left: 30px;
+    }
+    &:nth-child(7) {
+      top: -40px;
+      left: 20px;
+    }
     &:nth-child(8) {
-      top: -10px;
-      left: 15px;
+      top: -20px;
+      left: 30px;
     }
     &:nth-child(9) {
       top: 0;
-      left: 20px;
+      left: 40px;
     }
     &:nth-child(10) {
-      top: 10px;
-      left: 25px;
+      top: 20px;
+      left: 50px;
     }
+  }
+
+  &--medium {
+    & > div {
+      margin-left: 105px;
+    }
+  }
+  &--big {
+    & > div {
+      margin-left: 95px;
+    }
+  }
+
+  &__text {
+    display: block;
+    font-size: 34px;
+    margin-top: 65px;
   }
 
   &--loading {
     position: absolute;
-    top: 33%;
-    left: 55%;
+    top: -28%;
+    left: 49%;
     width: 30px;
     height: 30px;
     opacity: 0;
@@ -481,7 +518,68 @@ p {
 
 }
 
+.angle {
+  font-family: 'Constantia', 'Helvetica', Arial, serif;
+  position: relative;
+  margin: 0 30px;
+  span {
+    display: block;
+    font-weight: 700;
+    font-size: 34px;
+    color: #af2626;
+  }
+}
 
+.result-screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  transition: all .3s ease;
+  opacity: 0;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  text-align: center;
+
+  &--explode {
+    background-image: url("../images/explode-screen.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  &--fail-low {
+    background-image: url("../images/fail-low.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  &--fail-high {
+    background-image: url("../images/fail-high.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  &--win {
+    background-image: url("../images/win.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__top {
+    margin-top: 200px;
+  }
+  &__middle {
+    width: 100%;
+    position: absolute;
+    bottom: 420px;
+    color: #694025;
+    font-size: 34px;
+  }
+  &__bottom {
+    margin-bottom: 140px;
+    text-transform: uppercase;
+  }
+}
 
 .dramatization {
   width: 100%;
@@ -494,23 +592,28 @@ p {
 }
 .d-bullet {
   position: absolute;
-  //width: 10px;
-  //height: 10px;
-  //background-color: #000;
+  width: 10px;
+  height: 10px;
+  background-color: #000;
   border-radius: 50%;
 
   opacity: 0;
   transition: transform .5s ease;
 
+  &--low {
+    top: 71%;
+    left: 31.6%;
+  }
+
   &--down {
-    top: 57%;
-    left: 17.6%;
+    top: 77%;
+    left: 31.6%;
     transform: translateY(80px);
     opacity: 1;
   }
   &--not-far {
-    top: 52%;
-    left: 18.6%;
+    top: 70%;
+    left: 30.6%;
     //transform: translateY(80px);
     //animation-name: bulletGoesNotFar;
     //animation-duration: 2s;

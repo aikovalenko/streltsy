@@ -123,9 +123,7 @@ var app = $('.app'),
 
 var results = [];
 
-$('html').append(
-    "<div class='version'>α0.16</div>"
-);
+
 
 
 function introRender() {
@@ -161,29 +159,42 @@ function firstRender() {
             "</div>" +
             "<div class='gun-settings'>" +
                 "<div class='gun-set gun-settings__bullet hidden'>" +
-                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Выберите пулю</div>" +
+                    "<div class='animate-top js-animate  step-powder'>II</div>" +
+                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Выбери и заряди пулю</div>" +
                     "<div class='decoration animate-down js-animate gun-settings__choose gun-set__block gun-set__block--bottom'>" +
-                        SmallBullet + MediumBullet + BigBullet +
+        "<div class='bullet-wrap' data-bullet='0'><div class='bullet bullet--small'></div><div class='bullet-text'><b>6-ти граммовая</b> литая свинцовая<br>пуля</div></div>" + "<div class='bullet-wrap' data-bullet='1'><div class='bullet bullet--medium'></div><div class='bullet-text'><b>18-ти граммовая</b> литая свинцовая<br>пуля</div></div>" + "<div class='bullet-wrap' data-bullet='2'><div class='bullet bullet--big'></div><div class='bullet-text'><b>29-ти граммовая</b> литая свинцовая<br>пуля</div></div>" +
                     "</div>" +
                 "</div>" +
                 "<div class='gun-set gun-settings__gunpowder'>" +
-                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Засыпьте порох</div>" +
+                    "<div class='animate-top js-animate  step-powder'>I</div>" +
+                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Отмеряй и засыпь порох</div>" +
                     "<div class='decoration animate-down gun-set__block gun-settings__choose gun-settings__gunpowder__choose js-animate gun-set__block--bottom'>" +
-                        SmallGunpowder + MediumGunpowder + BigGunpowder +
+        "<div class='gunpowder gunpowder--small' data-gunpowder='0'>" +
+        "<div></div><div></div><div></div>" +
+        "<span class='gunpowder__text'>9 грамм зернёного пороха</span>" +
+        "</div>" + "<div class='gunpowder gunpowder--medium' data-gunpowder='1'>" +
+        "<div></div><div></div><div></div><div></div><div></div><div></div>" +
+        "<span class='gunpowder__text'>37 грамм зернёного пороха</span>" +
+        "</div>" + "<div class='gunpowder gunpowder--big' data-gunpowder='2'>" +
+        "<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>" +
+        "<span class='gunpowder__text'>95 грамм зернёного пороха</span>" +
+        "</div>" +
                     "</div>" +
                 "</div>" +
                 "<div class='gun-set gun-settings__angle hidden'>" +
-                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Выберите наклон оружия</div>" +
+                    "<div class='animate-top js-animate  step-powder'>III</div>" +
+                    "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Целься! Выбери наклон!</div>" +
                     "<div id='test' class='decoration animate-down gun-set__block gun-settings__angle gun-settings__choose__angle js-animate gun-set__block--bottom'>" +
-                        "<button class='angle' data-angle='0'>Выше</button>" +
-                        "<button class='angle' data-angle='1'>Прямо</button>" +
-                        "<button class='angle' data-angle='2'>Ниже</button>" +
+                        "<button class='angle' data-angle='0'><img width='255' src='../images/aim-up-small.png'><span>Выше цели</span></button>" +
+                        "<button class='angle' data-angle='1'><img width='300' src='../images/aim-norm-small.png'><span>Ровно в цель</span></button>" +
+                        "<button class='angle' data-angle='2'><img width='270' src='../images/aim-down-small.png'><span>Ниже цели</span></button>" +
                     "</div>" +
                 "</div>" +
                 // "<div class='fire hidden'>" +
                 //     "<button class='fire-btn'>Пли!</button>" +
                 // "</div>" +
                 "<div class='fire hidden gun-set'>" +
+                    "<div class='animate-top js-animate  step-powder'>IV</div>" +
                     "<div class='decoration animate-top js-animate gun-set__block gun-set__block--top'>Приготовились</div>" +
                     "<div class='decoration fire-btn animate-down js-animate gun-settings__choose gun-set__block gun-set__block--bottom'>Пали!</div>" +
                 "</div>" +
@@ -197,12 +208,15 @@ function firstRender() {
 
 var SmallGunpowder = "<div class='gunpowder gunpowder--small' data-gunpowder='0'>" +
                         "<div></div><div></div><div></div>" +
+                        // "<span class='gunpowder__text'>9 грамм зернёного пороха</span>" +
                      "</div>",
     MediumGunpowder = "<div class='gunpowder gunpowder--medium' data-gunpowder='1'>" +
                          "<div></div><div></div><div></div><div></div><div></div><div></div>" +
+                            // "<span class='gunpowder__text'>37 грамм зернёного пороха</span>" +
                         "</div>",
     BigGunpowder = "<div class='gunpowder gunpowder--big' data-gunpowder='2'>" +
                          "<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>" +
+                    // "<span class='gunpowder__text'>95 грамм зернёного пороха</span>" +
                         "</div>",
 
 
@@ -213,8 +227,8 @@ var SmallGunpowder = "<div class='gunpowder gunpowder--small' data-gunpowder='0'
 
 
 // var duration = 2;
-// introRender();
-// firstRender();
+introRender();
+firstRender();
 // $('.select-gun.animate').css('transition', 'all '+ duration/1.4 +'s ease').removeClass('animate-up--active');
 
 
@@ -287,15 +301,15 @@ $(document).on('click', '.gunpowder', function () {
         gunpowderDuration = 3;
 
 
-    if ($(this).data('gunpowder') == 0) {
+    if ($(this).data('gunpowder') === 0) {
         $('.gun').append(SmallGunpowder).find('.gunpowder').addClass('gunpowder--loading');
         results.push(0);
     }
-    if ($(this).data('gunpowder') == 1) {
+    if ($(this).data('gunpowder') === 1) {
         $('.gun').append(MediumGunpowder).find('.gunpowder').addClass('gunpowder--loading');
         results.push(1);
     }
-    if ($(this).data('gunpowder') == 2) {
+    if ($(this).data('gunpowder') === 2) {
         $('.gun').append(BigGunpowder).find('.gunpowder').addClass('gunpowder--loading');
         results.push(2);
     }
@@ -333,7 +347,7 @@ $(document).on('click', '.gunpowder', function () {
     console.log(results);
 });
 
-$(document).on('click', '.bullet', function () {
+$(document).on('click', '.bullet-wrap', function () {
     var duration = 1,
         bulletDuration = 3;
 
@@ -421,7 +435,7 @@ $(document).on('click', '.angle', function () {
         gunpowderDuration = 3;
 
 
-    if ($(this).data('angle') == 0) {
+    if ($(this).data('angle') === 0) {
         $('.gun-img').removeClass('gun-choose-angle').addClass('gun-high');
         $('body').append(
             "<div class='angle-illustration angle-illustration--up'>" +
@@ -429,7 +443,7 @@ $(document).on('click', '.angle', function () {
         );
         results.push(0);
     }
-    if ($(this).data('angle') == 1) {
+    if ($(this).data('angle') === 1) {
         // $('.gun-img').removeClass('gun-choose-angle').addClass('gun-high');
         $('body').append(
             "<div class='angle-illustration angle-illustration--ok'>" +
@@ -437,7 +451,7 @@ $(document).on('click', '.angle', function () {
         );
         results.push(1);
     }
-    if ($(this).data('angle') == 2) {
+    if ($(this).data('angle') === 2) {
         $('.gun-img').removeClass('gun-choose-angle').addClass('gun-low');
         $('body').append(
             "<div class='angle-illustration angle-illustration--down'>" +
@@ -494,11 +508,14 @@ $(document).on('click', '.angle', function () {
 //     "<div class='d-bullet'></div>" +
 //     "</div>"
 // );
+$(document).on('click','.js-new-game', function () {
+    location.reload();
+});
 
+// results = [1, 1, 0];
+$(document).on('click', '.fire-btn', function () {
 
-results = [2, 1, 2];
-// $(document).on('click', '.fire-btn', function () {
-$(document).on('click', function () {
+// $(document).on('click', function () {
 // $(document).on('click', function () {
 
     $(this).addClass('hidden');
@@ -525,27 +542,42 @@ $(document).on('click', function () {
     //     "</div>"
     // );
 
+    function norm() {
 
-    app.append(
-        "<div class='dramatization'>" +
+
+        app.append(
+            "<div class='dramatization'>" +
             "<div class='shot shot-animate'>" +
-                "<img width='100%' src='images/shot.png' alt=''>" +
+            "<img width='100%' src='images/shot.png' alt=''>" +
             "</div>" +
             "<div class='person person-animate'>" +
-                "<img class='js-person js-person-up' width='300' src='images/aim-up-small.png' alt=''>" +
-                "<img class='js-person js-person-down' width='300' src='images/aim-down-small.png' alt=''>" +
-                "<img class='js-person js-person-norm' width='300' src='images/aim-norm-small.png' alt=''>" +
+            "<img class='js-person js-person-up' width='300' src='images/aim-up-small.png' alt=''>" +
+            "<img class='js-person js-person-down' width='300' src='images/aim-down-small.png' alt=''>" +
+            "<img class='js-person js-person-norm' width='300' src='images/aim-norm-small.png' alt=''>" +
             "</div>" +
             "<div class='aim aim-animate'>" +
-                "<img width='180' src='images/aim-small.png' alt=''>" +
+            "<img width='180' src='images/aim-small.png' alt=''>" +
             "</div>" +
             "<div class='d-bullet'></div>" +
-        "</div>"
-    );
+            "</div>"
+        );
+    }
+    function explode() {
+        app.append(
+            "<div class='dramatization'>" +
+            "<div class='shot shot-animate'>" +
+            "<img width='100%' src='images/explode.png' alt=''>" +
+            "</div>" +
+            "<div class='d-bullet'></div>" +
+            "</div>"
+        );
+    }
 
     var duration = 2;
 
     $('.gun').css('display', 'none');
+    $('.angle-illustration').css('opacity', '0');
+    $('.gun-settings').css('opacity', '0');
 
     setTimeout(function () {
         $('.person').removeClass('person-animate');
@@ -553,11 +585,11 @@ $(document).on('click', function () {
         // $('.shot').removeClass('shot-animate');
     }, 200);
     setTimeout(function () {
-        // $('.person').removeClass('person-animate');
-        // $('.aim').removeClass('aim-animate');
+    //     // $('.person').removeClass('person-animate');
+    //     // $('.aim').removeClass('aim-animate');
         $('.shot').removeClass('shot-animate');
-        $('.js-person').css('opacity', '0');
-        $('.js-person-up').css('opacity', '1');
+    //     $('.js-person').css('opacity', '0');
+    //     $('.js-person-up').css('opacity', '1');
     }, 2000);
 
 
@@ -565,145 +597,399 @@ $(document).on('click', function () {
 
 
     if (_.isEqual(results, [0, 0, 0])) {
+        norm();
         $('.js-person-up').css('opacity', '1');
 
         gunUp();
         smoke();
-        $('.fire').append(
-            "<p>Мало пороха, малая пуля, вверх. Результат - облочко дыма</p>"
+        // $('.fire').append(
+        //     "<p>Мало пороха, малая пуля, вверх. Результат - облочко дыма</p>"
+        // );
+
+        $('body').append(
+            "<div class='result-screen result-screen--explode'>" +
+                "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+                "<div class='result-screen__middle'><b>Разрыв ствола!</b><br>\n" +
+            "Ты засыпал слишком много пороха!<br>\n" +
+            "Надеемся, ты не пострадал.<br>\n" +
+            "Попробуй засыпать чуть меньше пороха.</div>" +
+                "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 4000);
     }
     else if (_.isEqual(results, [0, 1, 0])) {
+        norm();
         $('.js-person-up').css('opacity', '1');
 
         gunUp();
         smoke();
-        $('.fire').append(
-            "<p>Мало пороха, средняя пуля, вверх. Результат - облочко дыма</p>"
+        // $('.fire').append(
+        //     "<p>Мало пороха, средняя пуля, вверх. Результат - облочко дыма</p>"
+        // );
+
+        $('body').append(
+            "<div class='result-screen result-screen--fail-low'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'>Пуля прошла сильно ниже мишени.<br>Попробуй засыпать побольше пороха!</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 6000);
     }
     else if (_.isEqual(results, [1, 0, 0])) {
+        norm();
         $('.js-person-up').css('opacity', '1');
-
+        setTimeout(function () {
+            $('.js-person').css('opacity', '0');
+            $('.js-person-up').css('opacity', '1');
+        }, 2000);
         gunUp();
-        $('.fire').append(
-            "<p>Средне пороха, малая пуля, вверх. Результат - выше отметки (анимация в космос)</p>"
+        bulletGoesSpace();
+        // $('.fire').append(
+        //     "<p>Средне пороха, малая пуля, вверх. Результат - выше отметки (анимация в космос)</p>"
+        // );
+        $('body').append(
+            "<div class='result-screen result-screen--fail-high'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'>Пуля прошла сильно выше мишени.<br>Попробуй прицелится немного ниже.<br><br><i>Подсказка: ты выбрал правильный порох!</i></div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 6000);
     }
     else if (_.isEqual(results, [2, 0, 0])) {
+        explode();
         $('.js-person-up').css('opacity', '1');
 
         gunUp();
         explosion();
-        $('.fire').append(
-            "<p>Много пороха, малая пуля, вверх. Результат - разрыв</p>"
+        // $('.fire').append(
+        //     "<p>Много пороха, малая пуля, вверх. Результат - разрыв</p>"
+        // );
+
+        $('body').append(
+            "<div class='result-screen result-screen--explode'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'><b>Разрыв ствола!</b><br>\n" +
+            "Ты засыпал слишком много пороха!<br>\n" +
+            "Надеемся, ты не пострадал.<br>\n" +
+            "Попробуй засыпать чуть меньше пороха.</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 4000);
     }
     else if (_.isEqual(results, [2, 1, 0])) {
+        explode();
         $('.js-person-up').css('opacity', '1');
 
         gunUp();
         explosion();
-        $('.fire').append(
-            "<p>Много пороха, средняя пуля, вверх. Результат - разрыв</p>"
+        // $('.fire').append(
+        //     "<p>Много пороха, средняя пуля, вверх. Результат - разрыв</p>"
+        // );
+
+        $('body').append(
+            "<div class='result-screen result-screen--explode'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'><b>Разрыв ствола!</b><br>\n" +
+            "Ты засыпал слишком много пороха!<br>\n" +
+            "Надеемся, ты не пострадал.<br>\n" +
+            "Попробуй засыпать чуть меньше пороха.</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 4000);
     }
     else if (_.isEqual(results, [1, 1, 0])) {
-
+        norm();
         $('.js-person-up').css('opacity', '1');
-
+        setTimeout(function () {
+            $('.js-person').css('opacity', '0');
+            $('.js-person-up').css('opacity', '1');
+        }, 2000);
         gunUp();
-        $('.fire').append(
-            "<p>Средне пороха, средняя пуля, вверх. Результат - ствол дергается выше, перелет (анимация в космос)</p>"
+        bulletGoesSpace();
+        gunUp();
+        // $('.fire').append(
+        //     "<p>Средне пороха, средняя пуля, вверх. Результат - ствол дергается выше, перелет (анимация в космос)</p>"
+        // );
+        $('body').append(
+            "<div class='result-screen result-screen--fail-high'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'>Пуля прошла сильно выше мишени.<br>Попробуй прицелится немного ниже.<br><br><i>Подсказка: ты выбрал правильный порох!</i></div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 6000);
     }
 
 
     else if (_.isEqual(results, [2, 1, 1])) {
-
+        explode();
         $('.js-person-norm').css('opacity', '1');
+        setTimeout(function () {
+            $('.js-person').css('opacity', '0');
+            $('.js-person-up').css('opacity', '1');
+        }, 2000);
 
         explosion();
-        $('.fire').append(
-            "<p>Много пороха, средняя пуля, прямо. Результат - разрыв</p>"
+        // $('.fire').append(
+        //     "<p>Много пороха, средняя пуля, прямо. Результат - разрыв</p>"
+        // );
+
+        $('body').append(
+            "<div class='result-screen result-screen--explode'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'><b>Разрыв ствола!</b><br>\n" +
+            "Ты засыпал слишком много пороха!<br>\n" +
+            "Надеемся, ты не пострадал.<br>\n" +
+            "Попробуй засыпать чуть меньше пороха.</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 4000);
     }
     else if (_.isEqual(results, [1, 1, 1])) {
-
+        norm();
         $('.js-person-norm').css('opacity', '1');
+        bulletGoesAlmost();
+        // $('.fire').append(
+        //     "<p>Средне пороха, средняя пуля, прямо. Результат - перелет, но уже близко</p>"
+        // );
 
-        $('.fire').append(
-            "<p>Средне пороха, средняя пуля, прямо. Результат - перелет, но уже близко</p>"
+        $('body').append(
+            "<div class='result-screen result-screen--fail-high'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'>Пуля прошла сильно выше мишени.<br>Попробуй прицелится немного ниже.<br><br><i>Подсказка: ты выбрал правильный порох!</i></div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 6000);
     }
     else if (_.isEqual(results, [0, 1, 1])) {
-
+        norm();
         $('.js-person-norm').css('opacity', '1');
 
-        $('.fire').append(
-            "<p>Мало пороха, средняя пуля, прямо. Результат - недолет</p>"
+        // $('.fire').append(
+        //     "<p>Мало пороха, средняя пуля, прямо. Результат - недолет</p>"
+        // );
+        bulletGoesDownEvenWorth();
+        $('body').append(
+            "<div class='result-screen result-screen--fail-low'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'>Пуля прошла сильно ниже мишени.<br>Попробуй засыпать побольше пороха!</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 6000);
+
     }
     else if (_.isEqual(results, [2, 0, 1])) {
-
+        explode();
         $('.js-person-norm').css('opacity', '1');
 
         explosion();
-        $('.fire').append(
-            "<p>Много пороха, малая пуля, прямо. Результат - разрыв</p>"
+        // $('.fire').append(
+        //     "<p>Много пороха, малая пуля, прямо. Результат - разрыв</p>"
+        // );
+        $('body').append(
+            "<div class='result-screen result-screen--explode'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'><b>Разрыв ствола!</b><br>\n" +
+            "Ты засыпал слишком много пороха!<br>\n" +
+            "Надеемся, ты не пострадал.<br>\n" +
+            "Попробуй засыпать чуть меньше пороха.</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 4000);
     }
     else if (_.isEqual(results, [1, 0, 1])) {
-
+        norm();
         $('.js-person-norm').css('opacity', '1');
+        bulletGoesAlmost();
+        // $('.fire').append(
+        //     "<p>Средне пороха, малая пуля, прямо. Результат - перелет, но уже близко</p>"
+        // );
+        $('body').append(
+            "<div class='result-screen result-screen--fail-high'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
 
-        $('.fire').append(
-            "<p>Средне пороха, малая пуля, прямо. Результат - перелет, но уже близко</p>"
+            "<div class='result-screen__middle'>Пуля прошла сильно выше мишени.<br>Попробуй прицелится немного ниже.<br><br><i>Подсказка: ты выбрал правильный порох!</i></div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 6000);
     }
     else if (_.isEqual(results, [0, 0, 1])) {
-
+        norm();
         $('.js-person-norm').css('opacity', '1');
+        bulletGoesDownEvenWorth();
+        // $('.fire').append(
+        //     "<p>Мало пороха, малая пуля, прямо. Результат - недолет</p>"
+        // );
 
-        $('.fire').append(
-            "<p>Мало пороха, малая пуля, прямо. Результат - недолет</p>"
+        $('body').append(
+            "<div class='result-screen result-screen--fail-low'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'>Пуля прошла сильно ниже мишени.<br>Попробуй засыпать побольше пороха!</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 6000);
+
+
     }
 
 
     else if (_.isEqual(results, [2, 1, 2])) {
+        explode();
         $('.js-person-down').css('opacity', '1');
 
         gunDown();
         explosion();
-        $('.fire').append(
-            "<p>Много пороха, средняя пуля, вниз. Результат - разрыв</p>"
+        // $('.fire').append(
+        //     "<p>Много пороха, средняя пуля, вниз. Результат - разрыв</p>"
+        // );
+        $('body').append(
+            "<div class='result-screen result-screen--explode'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'><b>Разрыв ствола!</b><br>\n" +
+            "Ты засыпал слишком много пороха!<br>\n" +
+            "Надеемся, ты не пострадал.<br>\n" +
+            "Попробуй засыпать чуть меньше пороха.</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 4000);
     }
     else if (_.isEqual(results, [1, 1, 2])) {
+        norm();
         $('.js-person-down').css('opacity', '1');
+        setTimeout(function () {
+            $('.js-person').css('opacity', '0');
+            $('.js-person-up').css('opacity', '1');
+        }, 2000);
         gunDown();
         win();
-        $('.fire').append(
-            "<p>Средне пороха, средняя пуля, вниз. Результат - попадание!</p>"
+        // $('.fire').append(
+        //     "<p>Средне пороха, средняя пуля, вниз. Результат - попадание!</p>"
+        // );
+
+        $('body').append(
+            "<div class='result-screen result-screen--win'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'><b>Точное попадание!</b><br>Ты мог бы стать отличным стрельцом!</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 6000);
     }
     else if (_.isEqual(results, [0, 1, 2])) {
+        norm();
         $('.js-person-down').css('opacity', '1');
+        setTimeout(function () {
+            $('.js-person').css('opacity', '0');
+            $('.js-person-up').css('opacity', '1');
+        }, 2000);
         gunDown();
         bulletGoesDown();
-        $('.fire').append(
-            "<p>Мало пороха, средняя пуля, вниз. Результат - стол дергается вверх, но пуля не долетает</p>"
+        // $('.fire').append(
+        //     "<p>Мало пороха, средняя пуля, вниз. Результат - стол дергается вверх, но пуля не долетает</p>"
+        // );
+        $('body').append(
+            "<div class='result-screen result-screen--fail-low'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'>Пуля прошла сильно ниже мишени.<br>Попробуй засыпать побольше пороха!.</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 5000);
     }
     else if (_.isEqual(results, [0, 0, 2]) === true || _.isEqual(results, [1, 0, 2]) === true || _.isEqual(results, [2, 0, 2]) === true) {
+        norm();
         $('.js-person-down').css('opacity', '1');
+        $('.d-bullet').addClass('d-bullet--low');
         gunDown();
         bulletDown();
         joke();
-        $('.fire').append(
-            "<p>Малая пуля и вниз. Результат - пуля вываливается</p>"
+        // $('.fire').append(
+        //     "<p>Малая пуля и вниз. Результат - пуля вываливается</p>"
+        // );
+        $('body').append(
+            "<div class='result-screen result-screen--fail-low'>" +
+            "<div class='decoration result-screen__top'>Результат выстрела</div>" +
+
+            "<div class='result-screen__middle'>Пуля прошла сильно ниже мишени.<br>Попробуй засыпать побольше пороха!.</div>" +
+            "<div class='decoration result-screen__bottom js-new-game'>начать снова</div>" +
+            "</div>"
         );
+        setTimeout(function () {
+            $('.dramatization').css('opacity', '0');
+            $('.result-screen').css('opacity', '1').css('z-index', '9');
+        }, 5000);
     }
 
 // //The data for our line
@@ -768,14 +1054,71 @@ function bulletDown() {
 function bulletGoesDown() {
     var bezier_params = {
         start: {
-            x: 356,
-            y: 533,
+            x: 331,
+            y: 1350,
             angle: -100
         },
         end: {
-            x: 756,
-            y: 700,
+            x: 556,
+            y: 1600,
             angle: 60,
+            length: 0.25
+        }
+    };
+    setTimeout(function () {
+        $('.person').addClass('gun-goes-up');
+        $('.d-bullet').addClass('d-bullet--not-far').animate({path : new $.path.bezier(bezier_params)}, 1000);
+    }, 3500);
+}
+function bulletGoesDownEvenWorth() {
+    var bezier_params = {
+        start: {
+            x: 335,
+            y: 1393,
+            angle: -70
+        },
+        end: {
+            x: 482,
+            y: 1575,
+            angle: 30,
+            length: 0.25
+        }
+    };
+    setTimeout(function () {
+        $('.person').addClass('gun-goes-up');
+        $('.d-bullet').addClass('d-bullet--not-far').animate({path : new $.path.bezier(bezier_params)}, 1000);
+    }, 3500);
+}
+function bulletGoesAlmost() {
+    var bezier_params = {
+        start: {
+            x: 335,
+            y: 1393,
+            angle: -70
+        },
+        end: {
+            x: 982,
+            y: 1275,
+            angle: 30,
+            length: 0.25
+        }
+    };
+    setTimeout(function () {
+        $('.person').addClass('gun-goes-up');
+        $('.d-bullet').addClass('d-bullet--not-far').animate({path : new $.path.bezier(bezier_params)}, 1000);
+    }, 3500);
+}
+function bulletGoesSpace() {
+    var bezier_params = {
+        start: {
+            x: 334,
+            y: 1344,
+            angle: -30
+        },
+        end: {
+            x: 1080,
+            y: 1080,
+            angle: 30,
             length: 0.25
         }
     };
@@ -788,13 +1131,13 @@ function bulletGoesDown() {
 function win() {
     var bezier_params = {
         start: {
-            x: 356,
-            y: 533,
+            x: 331,
+            y: 1350,
             angle: -30
         },
         end: {
-            x: 1731,
-            y: 585,
+            x: 885,
+            y: 1445,
             angle: 30,
             length: 0.25
         }
