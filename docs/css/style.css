@@ -791,6 +791,13 @@ p
     -webkit-background-size: cover;
             background-size: cover;
 }
+.result-screen--almost
+{
+    background-image: url('../images/fail-almost.jpg');
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+            background-size: cover;
+}
 .result-screen__top
 {
     margin-top: 200px;

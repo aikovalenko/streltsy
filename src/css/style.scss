@@ -564,6 +564,11 @@ p {
     background-repeat: no-repeat;
     background-size: cover;
   }
+  &--almost {
+    background-image: url("../images/fail-almost.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
   &__top {
     margin-top: 200px;
@@ -589,6 +594,17 @@ p {
   z-index: 9;
 
 
+}
+.special {
+  position: absolute;
+  z-index: 99;
+  bottom: 60px;
+  width: 100%;
+  left: 0;
+  padding: 0 30px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: all .3s ease;
 }
 .d-bullet {
   position: absolute;
